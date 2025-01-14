@@ -7,7 +7,6 @@
   let drawing = false;
   let currentShape = null;
 
-  // SVG T-shirt template URL
   const svgTemplateURL = '/tshirt-template.svg';
 
   let svgImage;
@@ -18,7 +17,6 @@
     cursor: ${$drawingStore.currentTool === 'text' ? 'text' : 'crosshair'}
   `;
 
-  // Load the SVG as an image
   onMount(() => {
     ctx = canvas.getContext('2d');
     svgImage = new Image();
@@ -29,16 +27,13 @@
     };
   });
 
-  // Draw canvas and SVG
   function drawCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw SVG template as background
     if (svgImage) {
       ctx.drawImage(svgImage, 0, 0, canvas.width, canvas.height);
     }
 
-    // Draw all stored shapes
     $drawingStore.shapes.forEach(shape => {
       drawShape(shape);
     });
@@ -86,7 +81,6 @@
     }
   }
 
-  // Event handlers (same as before)
   function handleMouseDown(e) {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
