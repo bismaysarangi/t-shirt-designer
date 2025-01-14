@@ -1,4 +1,3 @@
-<!-- src/lib/components/Canvas.svelte -->
 <script>
   import { onMount } from 'svelte';
   import { drawingStore, addShape } from '../stores/drawingStore';
@@ -8,20 +7,37 @@
   let drawing = false;
   let currentShape = null;
 
+  // SVG T-shirt template URL
+  const svgTemplateURL = '/tshirt-template.svg';
+
+  let svgImage;
+
   $: canvasStyle = `
     width: 600px;
     height: 600px;
     cursor: ${$drawingStore.currentTool === 'text' ? 'text' : 'crosshair'}
   `;
 
+  // Load the SVG as an image
   onMount(() => {
     ctx = canvas.getContext('2d');
-    drawCanvas();
+    svgImage = new Image();
+    svgImage.src = svgTemplateURL;
+
+    svgImage.onload = () => {
+      drawCanvas();
+    };
   });
 
+  // Draw canvas and SVG
   function drawCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
+    // Draw SVG template as background
+    if (svgImage) {
+      ctx.drawImage(svgImage, 0, 0, canvas.width, canvas.height);
+    }
+
     // Draw all stored shapes
     $drawingStore.shapes.forEach(shape => {
       drawShape(shape);
@@ -70,13 +86,14 @@
     }
   }
 
+  // Event handlers (same as before)
   function handleMouseDown(e) {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
     drawing = true;
-    
+
     if ($drawingStore.currentTool === 'text') {
       const text = prompt('Enter text:', '');
       if (text) {
@@ -97,7 +114,7 @@
       type: $drawingStore.currentTool,
       color: $drawingStore.currentColor,
       strokeWidth: $drawingStore.strokeWidth,
-      points: [{x, y}],
+      points: [{ x, y }],
       startX: x,
       startY: y
     };
@@ -111,7 +128,7 @@
     const y = e.clientY - rect.top;
 
     if ($drawingStore.currentTool === 'pencil') {
-      currentShape.points.push({x, y});
+      currentShape.points.push({ x, y });
       drawCanvas();
       drawShape(currentShape);
     } else {

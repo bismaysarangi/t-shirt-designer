@@ -5,7 +5,7 @@
   </script>
   
   <div class="min-h-screen bg-gray-50 p-8">
-    <h1 class="text-3xl font-bold mb-8 text-center">Simple Paint App</h1>
+    <h1 class="text-3xl font-bold mb-8 text-center">T-Shirt Designer App</h1>
     
     <div class="max-w-5xl mx-auto flex gap-8">
       <Toolbar />
