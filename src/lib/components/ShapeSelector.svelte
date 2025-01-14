@@ -2,9 +2,9 @@
     import { drawingStore } from '../stores/drawingStore';
   
     const tools = ['pencil', 'rectangle', 'circle', 'text'];
-  </script>
+</script>
   
-  <div class="flex gap-2 p-2">
+<div class="flex gap-2 p-2">
     {#each tools as tool}
       <button
         class="px-4 py-2 rounded {$drawingStore.currentTool === tool ? 'bg-blue-500 text-white' : 'bg-gray-200'}"
@@ -13,4 +13,4 @@
         {tool}
       </button>
     {/each}
-  </div>
+</div>

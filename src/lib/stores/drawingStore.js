@@ -2,7 +2,7 @@
 import { writable } from 'svelte/store';
 
 export const drawingStore = writable({
-  currentTool: 'Pencil', // pencil, rectangle, circle, text
+  currentTool: 'pencil', // pencil, rectangle, circle, text
   currentColor: '#000000',
   strokeWidth: 2,
   shapes: [], // Store all shapes drawn

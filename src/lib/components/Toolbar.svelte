@@ -1,4 +1,3 @@
-<!-- src/lib/components/Toolbar.svelte -->
 <script>
     import ColorPicker from './ColorPicker.svelte';
     import ShapeSelector from './ShapeSelector.svelte';
@@ -22,18 +21,4 @@
       </label>
     </div>
   
-    <div class="flex gap-2">
-      <button
-        class="px-4 py-2 bg-blue-500 text-white rounded"
-        on:click={undo}
-      >
-        Undo
-      </button>
-      <button
-        class="px-4 py-2 bg-blue-500 text-white rounded"
-        on:click={redo}
-      >
-        Redo
-      </button>
-    </div>
   </div>
