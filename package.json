@@ -19,6 +19,6 @@
 		"vite": "^5.4.11"
 	},
 	"dependencies": {
-		"fabric": "^6.5.4"
+		"fabric": "^5.0.0"
 	}
 }
